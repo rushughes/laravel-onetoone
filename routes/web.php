@@ -1,5 +1,8 @@
 <?php
 
+use App\Address;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +16,10 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/insert/{id}', function($id) {
+  $user = User::findOrFail($id);
+  $address = new Address(['name'=>'555 Houston Avenue NY NY 11218']);
+  $user->address()->save($address);
 });
