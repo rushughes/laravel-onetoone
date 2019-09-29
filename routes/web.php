@@ -23,3 +23,11 @@ Route::get('/insert/{id}', function($id) {
   $address = new Address(['name'=>'555 Houston Avenue NY NY 11218']);
   $user->address()->save($address);
 });
+
+Route::get('/update/{id}', function($id) {
+  // $address = Address::where('user_id', $id);
+  // $address = Address::where('user_id', '=', $id);
+  $address = Address::whereUserId($id)->first();
+  $address->name = 'Updated address in Alaska';
+  $address->save();
+});
