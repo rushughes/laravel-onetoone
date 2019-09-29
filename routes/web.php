@@ -31,3 +31,13 @@ Route::get('/update/{id}', function($id) {
   $address->name = 'Updated address in Alaska';
   $address->save();
 });
+
+Route::get('/read/{id}', function($id) {
+  $user = User::findOrFail($id);
+  echo $user->address->name;
+});
+
+Route::get('/delete/{id}', function($id) {
+  $user = User::findOrFail($id);
+  $user->address()->first()->delete();
+});
